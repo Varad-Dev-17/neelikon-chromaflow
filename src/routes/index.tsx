@@ -4,17 +4,32 @@ import { ArrowUpRight, ArrowDown, Globe2, FlaskConical, ShieldCheck, BadgeCheck 
 import { Button } from '@/components/ui/button';
 import { ContactBand } from '@/components/site/layout';
 import { applications, certifications, pageHead } from '@/lib/neelikon';
+import { Antigravity, ANTIGRAVITY_COLORS } from '@/components/ui/Antigravity';
 import hero from '@/assets/colour-wave.jpg';
 
 export const Route = createFileRoute('/')({ head: () => pageHead('A world of colour', 'High-purity colours for food, cosmetics, pharmaceuticals and specialty applications. Discover Neelikon’s world of colour.'), component: Home });
 function Home() {
  const reduced = useReducedMotion();
- return <main>
+ return <main className="relative">
+  <Antigravity
+   fullPage
+   count={320}
+   magnetRadius={11}
+   ringRadius={7.5}
+   waveSpeed={0.9}
+   waveAmplitude={1}
+   particleSize={0.85}
+   lerpSpeed={0.07}
+   colors={ANTIGRAVITY_COLORS}
+   autoAnimate={true}
+   particleVariance={1}
+   particleShape="sphere"
+  />
   <section className="hero"><img className="hero-art" src={hero} alt="Sculptural waves of yellow, coral, magenta and blue colour pigments" width={1920} height={1024} fetchPriority="high" /><div className="container hero-inner"><motion.div className="hero-content" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1 }}><span className="eyebrow eyebrow-dot">THE SCIENCE OF COLOUR. THE ART OF POSSIBILITY.</span><h1>Neelikon.<br />A world of<br /><em>colour.</em></h1><p className="hero-description">Exceptional colours. Uncompromising quality.<br />Bringing your ideas to life with high-purity colour solutions, trusted around the world.</p><div className="hero-actions"><Button variant="brand" className="hero-cta" asChild><Link to="/products">Explore colour solutions <ArrowUpRight /></Link></Button><Link to="/about">Discover Neelikon <ArrowUpRight size={15} /></Link></div></motion.div><a className="scroll-note" href="#possibilities"><ArrowDown /> SCROLL TO DISCOVER</a><div className="hero-note"><span className="note-line" /><p>ONE WORLD.<br />ONE QUALITY.</p></div></div></section>
   <div className="spectrum-line" />
   <section className="proof-strip"><div className="container proof-grid"><p className="proof-intro">Rooted in science.<br />Trusted across the world.</p><div className="proof-item"><strong>40+</strong><span>Years of colour<br />expertise</span></div><div className="proof-item"><strong>100+</strong><span>Countries.<br />One quality standard.</span></div><div className="proof-item"><strong>4</strong><span>Industries.<br />Endless possibilities.</span></div></div></section>
   <section className="section container" id="possibilities"><div className="section-heading" data-reveal><div><span className="eyebrow">COLOUR WITH PURPOSE</span><h2>A spectrum of possibilities.</h2></div><p>From everyday essentials to extraordinary creations, find the right colour for your world.</p></div><div className="application-grid">{applications.slice(0,3).map((item,index) => <Link key={item.id} to="/products/$category" params={{ category: item.id }} className="application-card" data-reveal><div className="application-image"><img src={item.image} alt={item.name + ' colour application'} width={1024} height={1024} loading="lazy" /><span className="application-number">0{index+1}</span></div><div className="application-title"><h3>{item.name}</h3><span className="round-arrow"><ArrowUpRight size={16} /></span></div><p>{item.tag}</p></Link>)}</div><div className="section-bottom"><Link className="text-link" to="/products">Explore all colour solutions <ArrowUpRight size={15} /></Link></div></section>
   <section className="section about-band"><div className="container about-grid"><div data-reveal><span className="eyebrow">THE NEELIKON DIFFERENCE</span><h2>Colour is our craft.<br />Trust is our legacy.</h2><p>Since 1983, we have combined scientific expertise with a passion for colour. Today, our dyes, lakes and pigments connect possibilities across the globe — with one unwavering commitment to quality.</p><Link className="text-link" to="/about">Get to know us <ArrowUpRight size={15} /></Link></div><div className="values-list" data-reveal><div className="value-row"><FlaskConical /><div><h3>Precision, in every pigment.</h3><p>High-purity colourants developed through rigorous research and testing.</p></div></div><div className="value-row"><ShieldCheck /><div><h3>Quality without compromise.</h3><p>International standards. Consistent performance. Complete confidence.</p></div></div><div className="value-row"><Globe2 /><div><h3>One world. One quality.</h3><p>A global reach with the same commitment in every market we serve.</p></div></div></div></div></section>
-  <section className="certification-section container" data-reveal><span className="eyebrow">GLOBAL STANDARDS. EARNED TRUST.</span><div className="certifications">{certifications.map(cert => <span key={cert}><BadgeCheck />{cert}</span>)}</div></section><ContactBand />
+  <section className="section certification-section container" data-reveal><span className="eyebrow">GLOBAL STANDARDS. EARNED TRUST.</span><div className="certifications">{certifications.map(cert => <span key={cert}><BadgeCheck />{cert}</span>)}</div></section><ContactBand />
  </main>;
 }

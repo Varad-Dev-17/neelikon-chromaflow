@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FormulationRouteImport } from './routes/formulation'
+import { Route as InfrastructureRouteImport } from './routes/infrastructure'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
@@ -30,6 +32,16 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormulationRoute = FormulationRouteImport.update({
+  id: '/formulation',
+  path: '/formulation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InfrastructureRoute = InfrastructureRouteImport.update({
+  id: '/infrastructure',
+  path: '/infrastructure',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsRoute = ProductsRouteImport.update({
@@ -57,6 +69,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/formulation': typeof FormulationRoute
+  '/infrastructure': typeof InfrastructureRoute
   '/products': typeof ProductsRouteWithChildren
   '/quality': typeof QualityRoute
   '/products/$category': typeof ProductsCategoryRoute
@@ -66,6 +80,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/formulation': typeof FormulationRoute
+  '/infrastructure': typeof InfrastructureRoute
   '/quality': typeof QualityRoute
   '/products/$category': typeof ProductsCategoryRoute
   '/products': typeof ProductsIndexRoute
@@ -75,6 +91,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/formulation': typeof FormulationRoute
+  '/infrastructure': typeof InfrastructureRoute
   '/products': typeof ProductsRouteWithChildren
   '/quality': typeof QualityRoute
   '/products/$category': typeof ProductsCategoryRoute
@@ -86,6 +104,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/formulation'
+    | '/infrastructure'
     | '/products'
     | '/quality'
     | '/products/$category'
@@ -95,6 +115,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/formulation'
+    | '/infrastructure'
     | '/quality'
     | '/products/$category'
     | '/products'
@@ -103,6 +125,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/formulation'
+    | '/infrastructure'
     | '/products'
     | '/quality'
     | '/products/$category'
@@ -113,6 +137,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  FormulationRoute: typeof FormulationRoute
+  InfrastructureRoute: typeof InfrastructureRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   QualityRoute: typeof QualityRoute
 }
@@ -138,6 +164,20 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formulation': {
+      id: '/formulation'
+      path: '/formulation'
+      fullPath: '/formulation'
+      preLoaderRoute: typeof FormulationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/infrastructure': {
+      id: '/infrastructure'
+      path: '/infrastructure'
+      fullPath: '/infrastructure'
+      preLoaderRoute: typeof InfrastructureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products': {
@@ -189,6 +229,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  FormulationRoute: FormulationRoute,
+  InfrastructureRoute: InfrastructureRoute,
   ProductsRoute: ProductsRouteWithChildren,
   QualityRoute: QualityRoute,
 }
