@@ -1,0 +1,9 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { FlaskConical, ShieldCheck, Globe2, BadgeCheck } from 'lucide-react';
+import { PageIntro, ContactBand } from '@/components/site/layout';
+import { pageHead, certifications } from '@/lib/neelikon';
+
+export const Route = createFileRoute('/quality')({ head: () => pageHead('Quality & innovation', 'Neelikon’s commitment to research, high purity and international quality standards. One world. One quality.'), component: Quality });
+function Quality() {
+ return <main><PageIntro eyebrow="QUALITY & INNOVATION" title="Every colour. The same commitment." description="From research to production, quality is at the heart of our colour solutions. One world. One quality." /><section className="container quality-grid">{[{ icon: FlaskConical, title: 'Science-led precision', description: 'Research and analytical testing underpin our high-purity colourants. Our laboratory is NABL accredited in accordance with ISO/IEC 17025:2017.' },{ icon: ShieldCheck, title: 'International standards', description: 'Quality systems include ISO 9001:2015, FSSC 22000 and GMP, with Halal and Kosher certifications supporting a diverse range of market needs.' },{ icon: Globe2, title: 'Global regulatory focus', description: 'Our portfolio includes US FDA certified colours and solutions aligned with EU and JECFA requirements. Contact our team for the regulatory documentation specific to your product and market.' }].map(item => <div className="quality-item" key={item.title} data-reveal><item.icon /><h2>{item.title}</h2><p>{item.description}</p></div>)}</section><section className="certification-section container"><span className="eyebrow">GLOBAL STANDARDS. EARNED TRUST.</span><div className="certifications">{certifications.map(cert => <span key={cert}><BadgeCheck />{cert}</span>)}</div></section><ContactBand /></main>;
+}
